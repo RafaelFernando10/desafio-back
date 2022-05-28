@@ -15,4 +15,5 @@ model Account {
   name  String
   email String
   cpf   String
+  balance  Int
 }
