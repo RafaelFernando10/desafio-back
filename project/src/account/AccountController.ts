@@ -41,10 +41,7 @@ export class AccountController{
 
         const {depositValue} = req.body
 
-       // const depositValueNumber = req.params.depositValue
-
-
-        const account= await prisma.account.findFirst({
+               const account= await prisma.account.findFirst({
             where:{
                 id
             }
