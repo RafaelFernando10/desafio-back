@@ -18,4 +18,19 @@ export class AccountController{
         res.json(account)
 
     }
+    async searchBalance(req:Request,res:Response):Promise<void>{
+       
+        const idAccount = req.params.id     //pegando id que veio da URL
+        const id = parseInt(idAccount)      //transformando id do tipo string para number
+
+        //utilizando metodo do prisma para realizar busca no banco
+        const account= await prisma.account.findFirst({
+            where:{
+                id
+            }
+        })
+
+    res.status(200).json(`Saldo: ${account?.balance}`)
+
+    }
 }
