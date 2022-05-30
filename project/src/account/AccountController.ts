@@ -33,4 +33,35 @@ export class AccountController{
     res.status(200).json(`Saldo: ${account?.balance}`)
 
     }
+
+    async deposit(req:Request,res:Response):Promise<void>{
+    
+        const idAccount = req.params.id
+        const id = parseInt(idAccount)
+
+        const {depositValue} = req.body
+
+       // const depositValueNumber = req.params.depositValue
+
+
+        const account= await prisma.account.findFirst({
+            where:{
+                id
+            }
+        })
+
+        const newBalance = account?.balance + depositValue
+
+        await prisma.account.update({
+            where:{id},
+            data:{balance:newBalance}
+        })
+
+        res.status(200).json(`Saldo: ${newBalance}`)
+
+
+
+
+    }
+
 }
