@@ -5,6 +5,8 @@ CREATE TABLE "Account" (
     "email" TEXT NOT NULL,
     "cpf" TEXT NOT NULL,
     "balance" INTEGER NOT NULL,
+    "cep" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
 
     CONSTRAINT "Account_pkey" PRIMARY KEY ("id")
 );
