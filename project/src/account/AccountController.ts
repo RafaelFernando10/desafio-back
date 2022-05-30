@@ -1,17 +1,22 @@
+import axios from "axios";
 import { Request, Response } from "express";
 import prisma from "../database/client";
 
 export class AccountController {
 
     async register(req: Request, res: Response): Promise<void> {
-        const { cpf, email, name } = req.body
+        const { cpf, email, name,cep } = req.body
+
+        const address = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
 
         const account = await prisma.account.create({
-            data: {
+            data:{
                 name,
                 email,
                 cpf,
-                balance: 0
+                cep,
+                city:address.data.localidade,
+                balance:0
             }
         })
 
